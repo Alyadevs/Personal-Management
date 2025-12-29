@@ -2,31 +2,35 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
-        cache: 'npm'
+        node-version: 18
 
     - name: Install Server dependencies
-      run: cd ../Server && npm ci
+      working-directory: Server
+      run: npm install
 
     - name: Install Front dependencies
-      run: cd react-redux-compteur && npm ci
+      working-directory: react-redux-compteur
+      run: npm install
 
     - name: Lint Front
-      run: cd react-redux-compteur && npm run lint
+      working-directory: react-redux-compteur
+      run: npm run lint
 
     - name: Build Front
-      run: cd react-redux-compteur && npm run build
+      working-directory: react-redux-compteur
+      run: npm run build
