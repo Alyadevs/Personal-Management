@@ -24,7 +24,7 @@ jobs:
       run: npm install
 
     - name: Install Front dependencies
-      working-directory: Front
+      working-directory: Front\react-redux-compteur
       run: npm install
 
     - name: Lint Front
@@ -32,5 +32,5 @@ jobs:
       run: npm run lint
 
     - name: Build Front
-      working-directory: Front
+      working-directory: Front\react-redux-compteur
       run: npm run build
